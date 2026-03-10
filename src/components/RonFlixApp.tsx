@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchDefaultShows, fetchSearchShow } from "../api/api";
+import { fetchDefaultShows, fetchSearchShow} from "../api/api";
 import { Button, Stack, TextField } from "@mui/material";
 import type { Show, ShowData } from "../types/Show";
 import { ShowCard } from "./ShowCard";

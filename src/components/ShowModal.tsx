@@ -1,5 +1,8 @@
 import { Modal, Box, Typography, Button } from "@mui/material"
-import type { Show } from "../types/Show";
+import type { Episodes,  Show } from "../types/Show";
+import { fetchEpisodes } from "../api/api";
+import { useEffect, useState } from "react";
+import { EpisodeItem } from "./EpisodItem";
 
 const style = {
     position: 'absolute',
@@ -18,6 +21,19 @@ interface ShowModalProps {
     show: Show;
 }
 export const ShowModal = ({setIsModalVisible, show}: ShowModalProps) => {
+  const [episodes, setEpisodes] = useState<Episodes[]>([]) 
+
+ 
+
+  useEffect(()=> {
+    showEpisodes()
+  },[])
+      const showEpisodes = async () => {
+        const seasons = await fetchEpisodes(show.id);
+        console.log(seasons)
+        setEpisodes(seasons)
+        
+    }
 
 
     return (
@@ -27,18 +43,16 @@ export const ShowModal = ({setIsModalVisible, show}: ShowModalProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
+
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {show.name}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {show.summary}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {show.genres}
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            {show.url}
-          </Typography>
+          <div style={{maxHeight: 200, overflowY: "scroll" }}>
+          {episodes.map((episode) =>  (
+              <EpisodeItem key={episode.id} episode={episode}/>
+          ))}
+          </div>
+
           <Button onClick={() => setIsModalVisible(false)}>Close</Button>
         </Box>
       </Modal>

@@ -1,5 +1,5 @@
 import axios from "axios"
-import type { Show, ShowData } from "../types/Show";
+import type {  Episodes, Show, ShowData } from "../types/Show";
 
 const API_URL = "https://api.tvmaze.com"
 
@@ -23,4 +23,15 @@ export const fetchDefaultShows = async (): Promise<Show[]> => {
         console.error(e);
         return []
     }
+
 }
+export const fetchEpisodes = async (id:number): Promise<Episodes[]> => {
+    try {
+        const episodes = await axios.get(`${API_URL}/shows/${id}/episodes`)
+        console.log(episodes.data)
+        return episodes.data
+    } catch (error) {
+        console.error(error)
+        return []
+    }
+} 

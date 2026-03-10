@@ -16,6 +16,27 @@ export interface Image {
     medium?: string;
     original: string;
 }
+// export interface Season {
+//     number:number
+//     episodeOrder:number
+//     image: Image;
+// }
+
+export interface Episodes {
+    endDate: number
+    id: number
+    episodeOrder:number
+    name: string
+    summary: string
+    season:number
+    number: number
+    rating: Raiting
+    
+}
+
+export interface Raiting {
+    average: number
+}
 
 // {
 //     "score": 0.8677964,

@@ -22,9 +22,9 @@ export const ShowCard = ({show}: ShowCardProps) => {
                 <Typography gutterBottom variant="h5" component="div">
                     {show.name}
                 </Typography>
-                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                {/* <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                     <div dangerouslySetInnerHTML={{__html: show.summary}}></div>
-                </Typography>
+                </Typography> */}
             </CardContent>
             <CardActions>
                 <Button size="small" onClick={() => setIsModalVisible(!isModalVisible)}>Open more info</Button>

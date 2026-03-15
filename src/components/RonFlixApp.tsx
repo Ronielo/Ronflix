@@ -66,8 +66,6 @@ const handleGenreSelect = (selectedGenre: string) => {
     setOpen(false); 
 }
 
-  
-
   return (
     <>
       <Stack
@@ -104,11 +102,11 @@ const handleGenreSelect = (selectedGenre: string) => {
           justifyContent="center"
           sx={{ maxWidth: "1200px", margin: "0 auto" }}
         >
-          {showsList.map((showData) => (
-            <ShowCard key={showData.show.id} show={showData.show} addFavorite={addFavorite} />
+          {list.map((showData) => (
+            <ShowCard key={showData.id} show={showData} addFavorite={addFavorite} />
           ))}
-          {!showsList.length &&
-            defaultShows.map((showData) => (
+          {!list.length &&
+            list.map((showData) => (
               <ShowCard key={showData.id} show={showData} addFavorite={addFavorite} />
             ))}
         </Grid>

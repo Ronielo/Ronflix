@@ -1,7 +1,7 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
-import type { Episodes, Show } from "../types/Show";
-import { fetchEpisodes } from "../api/api";
+import { Modal, Box, Typography, Button } from "@mui/material"
+import type { Episode, Show } from "../types/Show";
 import { useEffect, useState } from "react";
+import { fetchEpisode } from "../api/api";
 import { EpisodeItem } from "./EpisodItem";
 
 const style = {
@@ -21,16 +21,17 @@ interface ShowModalProps {
   show: Show;
 }
 export const ShowModal = ({ setIsModalVisible, show }: ShowModalProps) => {
-  const [episodes, setEpisodes] = useState<Episodes[]>([]);
+  const [episodes, setEpisodes] = useState<Episode[]>([]);
 
-  useEffect(() => {
-    showEpisodes();
-  }, []);
-  const showEpisodes = async () => {
-    const seasons = await fetchEpisodes(show.id);
-    console.log(seasons);
-    setEpisodes(seasons);
-  };
+    const getEpisodes = async ()  =>  {
+      const episodes =  await fetchEpisode(show.id)
+      setEpisodes(episodes)
+    }
+
+    useEffect(() =>{
+      getEpisodes();
+
+    },[])
 
   return (
     <Modal

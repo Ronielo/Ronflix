@@ -1,11 +1,11 @@
-import type { Episodes } from "../types/Show";
+import type { Episode } from "../types/Show";
 import StarIcon from '@mui/icons-material/Star';
 import StarHalfIcon from '@mui/icons-material/StarHalf';
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 
 
 type Props = {
-  episode: Episodes;
+  episode: Episode;
 };
 export const EpisodeItem = ({ episode }: Props) => {
   const CheckRaiting = (raiting: number) => {

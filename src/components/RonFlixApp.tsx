@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { fetchDefaultShows, fetchSearchShow } from "../api/api";
-import { Button, Grid, Stack, TextField, Typography } from "@mui/material";
 import type { Show, ShowData } from "../types/Show";
 import { ShowCard } from "./ShowCard";
+import { Button, Grid, Stack, TextField, Typography, Drawer } from "@mui/material";
+
 
 type Props ={ 
     addFavorite: (show: Show) => void
@@ -15,9 +16,21 @@ export const RonFlixApp = ({addFavorite}: Props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const [open, setOpen]= useState(false)
+
+  const [genre, setGenre] = useState("");
+
+  const filterdShows = defaultShows.filter((show) => show.genres.includes(genre));
+  const list = genre? filterdShows: defaultShows;
+
   useEffect(() => {
     fetchPage();
   }, []);
+
+  useEffect(() => {
+  }, [genre]);
+
+  const genres = [... new Set(defaultShows.flatMap((show) => show.genres))];
 
   const fetchPage = async () => {
     setLoading(true);
@@ -47,6 +60,12 @@ export const RonFlixApp = ({addFavorite}: Props) => {
       setLoading(false);
     }
   };
+
+const handleGenreSelect = (selectedGenre: string) => {
+    setGenre(selectedGenre);
+    setOpen(false); 
+}
+
   
 
   return (
@@ -66,6 +85,14 @@ export const RonFlixApp = ({addFavorite}: Props) => {
         />
 
         <Button onClick={() => onSearchHandler()}>Search</Button>
+        <Button  onClick={ () => setOpen(true)}>Open drawer</Button>
+        <Drawer anchor="right" open={open} onClose={ () => setOpen(false)}>
+          {genres.map((genre) => 
+              <Button key={genre} onClick={() => handleGenreSelect(genre)}>
+                  {genre}
+              </Button>
+          )}
+          </Drawer>
 
         {loading && <Typography>Loading...</Typography>}
 

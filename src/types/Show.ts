@@ -1,3 +1,5 @@
+import { Interests } from "@mui/icons-material";
+
 export interface ShowData {
     show: Show;
     score: number;
@@ -15,6 +17,18 @@ export interface Show {
 export interface Image {
     medium?: string;
     original: string;
+}
+ 
+// export interface EpisodesData{
+//     episodes: Episode[];
+// }
+
+export interface Episode{
+    id: number;
+        season: number;
+        number: number;
+        name: string;
+
 }
 
 export interface Episodes {

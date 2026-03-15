@@ -1,4 +1,3 @@
-import { Interests } from "@mui/icons-material";
 
 export interface ShowData {
     show: Show;
@@ -19,19 +18,8 @@ export interface Image {
     original: string;
 }
  
-// export interface EpisodesData{
-//     episodes: Episode[];
-// }
 
 export interface Episode{
-    id: number;
-        season: number;
-        number: number;
-        name: string;
-
-}
-
-export interface Episodes {
     endDate: number
     id: number
     episodeOrder:number
@@ -40,8 +28,8 @@ export interface Episodes {
     season:number
     number: number
     rating: Raiting
-    
 }
+
 
 export interface Raiting {
     average: number
